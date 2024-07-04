@@ -1,6 +1,6 @@
 class Solution {
     public int reverse(int x) {
-        int power = 0;
+       
         long reverse = 0;  // Use long to handle potential integer overflow
         while (x != 0) {
             int digit = x % 10;
@@ -8,7 +8,7 @@ class Solution {
                 continue;
             } else {
                 reverse = reverse * 10 + digit;
-                power++;
+                
             }
             x /= 10;
         }
