@@ -1,19 +1,4 @@
-// class Solution {
-//     public int maxProfit(int[] prices) {
-//         int buy = Integer.MAX_VALUE;
-//         int sell = Integer.MIN_VALUE;
-//         int lp = 0;
-//         int rp = prices.length;
-//         int max = Integer.MIN_VALUE;
-//         while(lp<rp){
-//             if((prices[rp]-prices[lp])>max){
-//                 max = prices[rp]-prices[lp];
-//             }
 
-//         }
-//         return max;;
-//     }
-// }
 class Solution {
     public int maxProfit(int[] prices) {
         int minPrice = Integer.MAX_VALUE;
