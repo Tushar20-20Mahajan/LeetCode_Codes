@@ -36,6 +36,8 @@ class Solution {
             //         }
             //     }
             // }
+            
+            // or reverse the remaning
             int lp = pivot+1;
             int rp = nums.length-1;
              while(lp<rp){
