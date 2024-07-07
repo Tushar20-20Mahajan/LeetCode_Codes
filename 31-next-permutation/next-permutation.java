@@ -26,24 +26,24 @@ class Solution {
                     break;
                 }
             }
-            // for(int i = pivot+1;i<nums.length;i++){
-            //     for(int j = i;j<nums.length;j++){
-            //         if(i!=j && nums[i]>nums[j]){
-            //             int temp = nums[i];
-            //             nums[i]=nums[j];
-            //             nums[j]=temp;
-            //         }
-            //     }
-            // }
-            int lp = pivot+1;
-            int rp = nums.length-1;
-             while(lp<rp){
-                int temp = nums[lp];
-                nums[lp]=nums[rp];
-                nums[rp]=temp;
-                lp++;
-                rp--;
+            for(int i = pivot+1;i<nums.length;i++){
+                for(int j = i;j<nums.length;j++){
+                    if(i!=j && nums[i]>nums[j]){
+                        int temp = nums[i];
+                        nums[i]=nums[j];
+                        nums[j]=temp;
+                    }
+                }
             }
+            // int lp = pivot+1;
+            // int rp = nums.length-1;
+            //  while(lp<rp){
+            //     int temp = nums[lp];
+            //     nums[lp]=nums[rp];
+            //     nums[rp]=temp;
+            //     lp++;
+            //     rp--;
+            // }
             
         }   
     }
