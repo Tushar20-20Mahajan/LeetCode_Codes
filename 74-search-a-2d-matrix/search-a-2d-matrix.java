@@ -1,21 +1,6 @@
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
-        if(matrix[0].length==1){
-            for(int i=0;i<matrix.length;i++){
-                if(matrix[i][0]==target){
-                    return true;
-                }
-            }
-            return false;
-        }
-         if(matrix[0].length==2){
-            for(int i=0;i<matrix.length;i++){
-                if(matrix[i][0]==target || matrix [i][1]==target){
-                    return true;
-                }
-            }
-            return false;
-        }
+        // Use Binary Search
         for(int i=0;i<matrix.length;i++){
             int low = 0;
             int high = matrix[i].length-1;
