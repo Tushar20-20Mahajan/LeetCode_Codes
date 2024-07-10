@@ -54,7 +54,7 @@ class Solution {
             return 0;
         }
 
-        int[] count = new int[128]; // To account for all ASCII characters
+        int[] count = new int[128]; 
         int maxLen = 0, left = 0;
 
         for (int right = 0; right < s.length(); right++) {
