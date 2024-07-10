@@ -3,7 +3,6 @@ class Solution {
         int arr[] = new int[nums.length];
         int lp = 0;
         int rp = nums.length - 1;
-        int right = nums.length - 1;
         int count = 0;
 
         // First pass: Place elements less than pivot in the correct position and count the pivot elements
