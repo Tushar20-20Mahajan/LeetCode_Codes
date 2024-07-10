@@ -17,8 +17,6 @@ class Solution {
                     num++;
                 }
                 count = Math.max(current,count);
-            }else {
-                continue;
             }
         }
         return count;
