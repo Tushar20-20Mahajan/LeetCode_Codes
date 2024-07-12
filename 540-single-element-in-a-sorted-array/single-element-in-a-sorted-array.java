@@ -10,6 +10,7 @@ class Solution {
 
         while (low < high) {
             int mid = low + (high - low) / 2;
+            
 
             // Ensure that mid is always even for pairing comparisons
             if (mid % 2 == 1) {
@@ -22,6 +23,7 @@ class Solution {
             } else {
                 high = mid; // Move to the left half
             }
+
         }
 
         // When low meets high, it's the single element
