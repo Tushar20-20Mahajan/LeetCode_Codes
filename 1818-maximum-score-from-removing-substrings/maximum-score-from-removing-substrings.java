@@ -78,57 +78,113 @@
 // }
 
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+// import java.util.ArrayDeque;
+// import java.util.Deque;
+
+// class Solution {
+
+//     public static int maxPoints(String s, int x, int y) {
+//         Deque<Character> stack = new ArrayDeque<>();
+//         int finalScore = 0;
+
+//         // First pass for the higher score pair
+//         if (x > y) {
+//             finalScore += processPairs(s, stack, 'a', 'b', x);
+//             finalScore += processPairs(stack, 'b', 'a', y);
+//         } else {
+//             finalScore += processPairs(s, stack, 'b', 'a', y);
+//             finalScore += processPairs(stack, 'a', 'b', x);
+//         }
+
+//         return finalScore;
+//     }
+
+//     private static int processPairs(String s, Deque<Character> stack, char firstChar, char secondChar, int score) {
+//         int totalScore = 0;
+//         for (char c : s.toCharArray()) {
+//             if (!stack.isEmpty() && stack.peek() == firstChar && c == secondChar) {
+//                 stack.pop();
+//                 totalScore += score;
+//             } else {
+//             stack.push(c);
+//             }
+//         }
+//         return totalScore;
+//     }
+
+//     private static int processPairs(Deque<Character> stack, char firstChar, char secondChar, int score) {
+//         Deque<Character> newStack = new ArrayDeque<>();
+//         int totalScore = 0;
+//         while (!stack.isEmpty()) {
+//             char c = stack.pollLast();
+//             if (!newStack.isEmpty() && newStack.peek() == firstChar && c == secondChar) {
+//                 newStack.pop();
+//                 totalScore += score;
+//             } else {
+//                 newStack.push(c);
+//             }
+//         }
+//         stack.addAll(newStack);
+//         return totalScore;
+//     }
+
+//     public int maximumGain(String s, int x, int y) {
+//         return maxPoints(s, x, y);
+//     }
+// }
+
+import java.util.ArrayList;
+import java.util.List;
 
 class Solution {
-
-    public static int maxPoints(String s, int x, int y) {
-        Deque<Character> stack = new ArrayDeque<>();
-        int finalScore = 0;
-
-        // First pass for the higher score pair
+    public static int maxPoints(ArrayList<Character> list, int x, int y) {
+        int score = 0;
+        ArrayList<Character> remaining = new ArrayList<>();
+        
+        // Determine which substring to prioritize
+        char firstChar, secondChar;
+        int primaryScore, secondaryScore;
         if (x > y) {
-            finalScore += processPairs(s, stack, 'a', 'b', x);
-            finalScore += processPairs(stack, 'b', 'a', y);
+            firstChar = 'a';
+            secondChar = 'b';
+            primaryScore = x;
+            secondaryScore = y;
         } else {
-            finalScore += processPairs(s, stack, 'b', 'a', y);
-            finalScore += processPairs(stack, 'a', 'b', x);
+            firstChar = 'b';
+            secondChar = 'a';
+            primaryScore = y;
+            secondaryScore = x;
         }
 
-        return finalScore;
-    }
-
-    private static int processPairs(String s, Deque<Character> stack, char firstChar, char secondChar, int score) {
-        int totalScore = 0;
-        for (char c : s.toCharArray()) {
-            if (!stack.isEmpty() && stack.peek() == firstChar && c == secondChar) {
-                stack.pop();
-                totalScore += score;
+        // Remove the prioritized substrings
+        for (char c : list) {
+            if (!remaining.isEmpty() && remaining.get(remaining.size() - 1) == firstChar && c == secondChar) {
+                remaining.remove(remaining.size() - 1);
+                score += primaryScore;
             } else {
-            stack.push(c);
+                remaining.add(c);
             }
         }
-        return totalScore;
-    }
 
-    private static int processPairs(Deque<Character> stack, char firstChar, char secondChar, int score) {
-        Deque<Character> newStack = new ArrayDeque<>();
-        int totalScore = 0;
-        while (!stack.isEmpty()) {
-            char c = stack.pollLast();
-            if (!newStack.isEmpty() && newStack.peek() == firstChar && c == secondChar) {
-                newStack.pop();
-                totalScore += score;
+        // Now remove the secondary substrings
+        ArrayList<Character> finalList = new ArrayList<>();
+        for (char c : remaining) {
+            if (!finalList.isEmpty() && finalList.get(finalList.size() - 1) == secondChar && c == firstChar) {
+                finalList.remove(finalList.size() - 1);
+                score += secondaryScore;
             } else {
-                newStack.push(c);
+                finalList.add(c);
             }
         }
-        stack.addAll(newStack);
-        return totalScore;
+
+        return score;
     }
 
     public int maximumGain(String s, int x, int y) {
-        return maxPoints(s, x, y);
+        ArrayList<Character> charList = new ArrayList<>();
+        for (char c : s.toCharArray()) {
+            charList.add(c);
+        }
+        return maxPoints(charList, x, y);
     }
 }
