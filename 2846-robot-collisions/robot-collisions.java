@@ -49,7 +49,7 @@
 //         newList.add(list.get(0));
 
 //         for (int i = 1; i < list.size(); i++) {
-//             if (!newList.isEmpty() && newList.get(newList.size() - 1).direction != list.get(i).direction) {
+//             if (!newList.isEmpty() && newList.get(newList.size() - 1).direction =='R' && list.get(i).direction=='L') {
 //                 if (newList.get(newList.size() - 1).health == list.get(i).health) {
 //                     newList.remove(newList.size() - 1);
 //                 } else if (newList.get(newList.size() - 1).health > list.get(i).health) {
