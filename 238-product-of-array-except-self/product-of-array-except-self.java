@@ -1,48 +1,53 @@
+// Using Division
+
 class Solution {
+
     public int[] productExceptSelf(int[] nums) {
         int product = 1;
-        Boolean isZeroFound = false;
+        boolean isZeroFound = false;
         int zeroCount = 0;
-        Boolean isConstantFound = false;
-        for(int i=0;i<nums.length;i++){
-            if(nums[i]==0){
+        boolean isConstantFound = false;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
                 isZeroFound = true;
                 zeroCount++;
                 continue;
             }
-            if(nums[i] != 0){
+
+            if (nums[i] != 0) {
                 isConstantFound = true;
             }
             product *= nums[i];
         }
 
-        int arr[] = new int[nums.length];
-        if (zeroCount>1){
-                Arrays.fill(arr,0);
-            }else{
-for(int i=0;i<nums.length;i++){
-            if(isZeroFound){
-                if(isConstantFound){
-                    if(nums[i] == 0){
-                    arr[i] = product;
-                   }else{
-                    arr[i] = 0;
-                   }
-                }else{
-                    arr[i] = 0;
+        int[] arr = new int[nums.length];
+
+        if (zeroCount > 1) {
+            Arrays.fill(arr, 0);
+        } else {
+            for (int i = 0; i < nums.length; i++) {
+                if (isZeroFound) {
+                    if (isConstantFound) {
+                        if (nums[i] == 0) {
+                            arr[i] = product;
+                        } else {
+                            arr[i] = 0;
+                        }
+                    } else {
+                        arr[i] = 0;
+                    }
+                } else {
+                    arr[i] = product / nums[i];
                 }
-                
-            }else{
-                arr[i] = product/nums[i];
             }
-            
         }
-            }
-        
+
         return arr;
     }
 }
 
+// Using Surfix and Prefix
 // class Solution {
 //     public int[] productExceptSelf(int[] nums) {
 //         int n = nums.length;
