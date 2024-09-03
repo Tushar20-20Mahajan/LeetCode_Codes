@@ -31,46 +31,80 @@
         
 //     }
 // }
+// class Solution {
+//     public int[] twoSum(int[] nums, int target) {
+//         int n = nums.length;
+//         int[] arr = new int[2];
+
+//         // Create an ArrayList of custom objects to store value and index pairs
+//         ArrayList<ValueIndexPair> list = new ArrayList<>();
+//         for (int i = 0; i < nums.length; i++) {
+//             list.add(new ValueIndexPair(nums[i], i));
+//         }
+
+//         // Sort the list based on values using a custom comparator
+//         Collections.sort(list, (p1, p2) -> Integer.compare(p1.value, p2.value));
+
+//         int lp = 0;
+//         int rp = nums.length - 1;
+//         while (lp <= rp) {
+//             int sum = list.get(lp).value + list.get(rp).value;
+//             if (sum == target) {
+//                 arr[0] = list.get(lp).index;
+//                 arr[1] = list.get(rp).index;
+//                 break;
+//             } else if (sum > target) {
+//                 rp--;
+//             } else {
+//                 lp++;
+//             }
+//         }
+
+//         return arr;
+//     }
+
+//     // Custom class to hold value and index together
+//     private static class ValueIndexPair {
+//         int value;
+//         int index;
+
+//         public ValueIndexPair(int value, int index) {
+//             this.value = value;
+//             this.index = index;
+//         }
+//     }
+// }
+
+
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        int n = nums.length;
-        int[] arr = new int[2];
-
-        // Create an ArrayList of custom objects to store value and index pairs
-        ArrayList<ValueIndexPair> list = new ArrayList<>();
-        for (int i = 0; i < nums.length; i++) {
-            list.add(new ValueIndexPair(nums[i], i));
-        }
-
-        // Sort the list based on values using a custom comparator
-        Collections.sort(list, (p1, p2) -> Integer.compare(p1.value, p2.value));
-
-        int lp = 0;
-        int rp = nums.length - 1;
-        while (lp <= rp) {
-            int sum = list.get(lp).value + list.get(rp).value;
-            if (sum == target) {
-                arr[0] = list.get(lp).index;
-                arr[1] = list.get(rp).index;
-                break;
-            } else if (sum > target) {
-                rp--;
-            } else {
-                lp++;
-            }
-        }
-
-        return arr;
-    }
-
-    // Custom class to hold value and index together
-    private static class ValueIndexPair {
+    class Node {
         int value;
         int index;
-
-        public ValueIndexPair(int value, int index) {
+        public Node(int value , int index){
             this.value = value;
             this.index = index;
         }
+    }
+    public int[] twoSum(int[] nums, int target) {
+        ArrayList<Node> list = new ArrayList<>();
+        int[] arr = new int [2];
+        for(int i =0 ;i<nums.length;i++){
+            list.add(new Node(nums[i],i));
+        }
+        Collections.sort(list , (p1,p2)-> Integer.compare(p1.value,p2.value));
+        int lp =0;
+        int rp = list.size()-1;
+        while(lp<rp){
+            if(list.get(lp).value + list.get(rp).value == target){
+                arr[0]=list.get(lp).index;
+                arr[1]=list.get(rp).index;
+                break;
+            }else if (list.get(lp).value + list.get(rp).value < target){
+                lp++;
+            }else{
+                rp--;
+            }
+        }
+        return arr;
     }
 }
